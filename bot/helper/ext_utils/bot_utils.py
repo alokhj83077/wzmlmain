@@ -284,9 +284,9 @@ def get_readable_message():
             msg += f"<b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
             if EMOJI_THEME is True:
-                buttons.sbutton("⏪Previous", "status pre")
+                buttons.sbutton("Previous", "status pre")
                 buttons.sbutton(f"{PAGE_NO}/{PAGES}", str(THREE))
-                buttons.sbutton("Next⏩", "status nex")
+                buttons.sbutton("Next", "status nex")
                 buttons.sbutton("Refresh", "status refresh")
                 buttons.sbutton("Close", "status close")
             else:
@@ -313,7 +313,7 @@ def turn(data):
             elif data[1] == "pre":
                 if PAGE_NO == 1:
                     COUNT = STATUS_LIMIT * (PAGES - 1)
-                    PAGE_NO = PAGES
+                    PAGE_NO = pages
                 else:
                     COUNT -= STATUS_LIMIT
                     PAGE_NO -= 1
@@ -413,39 +413,22 @@ def pop_up_stats(update, context):
     query.answer(text=stats, show_alert=True)
 def bot_sys_stats():
     currentTime = get_readable_time(time() - botStartTime)
-    cpu = psutil.cpu_percent()
-    mem = psutil.virtual_memory().percent
-    disk = psutil.disk_usage(DOWNLOAD_DIR).percent
-    total, used, free = shutil.disk_usage(DOWNLOAD_DIR)
-    total = get_readable_file_size(total)
-    used = get_readable_file_size(used)
-    free = get_readable_file_size(free)
+    total, used, free, disk = disk_usage('/')
+    disk_t = get_readable_file_size(total)
+    disk_f = get_readable_file_size(free)
+    memory = virtual_memory()
+    mem_p = memory.percent
     recv = get_readable_file_size(psutil.net_io_counters().bytes_recv)
     sent = get_readable_file_size(psutil.net_io_counters().bytes_sent)
-    num_active = 0
-    num_upload = 0
-    num_split = 0
-    num_extract = 0
-    num_archi = 0
-    tasks = len(download_dict)
-    for stats in list(download_dict.values()):
-       if stats.status() == MirrorStatus.STATUS_DOWNLOADING:
-                num_active += 1
-       if stats.status() == MirrorStatus.STATUS_UPLOADING:
-                num_upload += 1
-       if stats.status() == MirrorStatus.STATUS_ARCHIVING:
-                num_archi += 1
-       if stats.status() == MirrorStatus.STATUS_EXTRACTING:
-                num_extract += 1
-       if stats.status() == MirrorStatus.STATUS_SPLITTING:
-                num_split += 1
-    stats = f"""
-CPU : {cpu}% | RAM : {mem}%
+    cpuUsage = cpu_percent(interval=1)
+    return = f"""
+CPU:  {progress_bar(cpuUsage)} {cpuUsage}%
+RAM: {progress_bar(mem_p)} {mem_p}%
+DISK: {progress_bar(disk)} {disk}%
 
-DL : {num_active} | UP : {num_upload} | SPLIT : {num_split}
-ZIP : {num_archi} | UNZIP : {num_extract} | TOTAL : {tasks}
-Limits : T/D : {TORRENT_DIRECT_LIMIT}GB | Z/U : {ZIP_UNZIP_LIMIT}GB
-                    L : {LEECH_LIMIT}GB | M : {MEGA_LIMIT}GB
+T: {disk_t}GB | F: {disk_f}GB
+Working: {currentTime}
+T-DL: {recv} | T-UL: {sent}
 """
     return stats
 dispatcher.add_handler(
