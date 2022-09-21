@@ -335,7 +335,7 @@ class MirrorLeechListener:
         if EMOJI_THEME is True:
             msg = f"<b>╭🗂️ Name: </b><{NAME_FONT}>{escape(name)}</{NAME_FONT}>\n<b>├📐 Size: </b>{size}"
         else:
-            msg = f"<b>Name: </b><{NAME_FONT}>{escape(name)}</{NAME_FONT}>"
+            msg = f"\n<b>Name: </b><{NAME_FONT}>{escape(name)}</{NAME_FONT}>\n\n"
             msg = f"\n<b>Size: </b>{size}\n\n"
 
 
