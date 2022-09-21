@@ -422,6 +422,7 @@ def bot_sys_stats():
     sent = get_readable_file_size(psutil.net_io_counters().bytes_sent)
     cpuUsage = cpu_percent(interval=1)
     stats = f"""
+
 CPU:  {progress_bar(cpuUsage)} {cpuUsage}%
 RAM: {progress_bar(mem_p)} {mem_p}%
 DISK: {progress_bar(disk)} {disk}%
@@ -429,6 +430,7 @@ DISK: {progress_bar(disk)} {disk}%
 T: {disk_t}GB | F: {disk_f}GB
 Working: {currentTime}
 T-DL: {recv} | T-UL: {sent}
+
 """
     return stats
 dispatcher.add_handler(
