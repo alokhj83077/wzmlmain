@@ -335,9 +335,7 @@ class MirrorLeechListener:
         if EMOJI_THEME is True:
             msg = f"<b>╭🗂️ Name: </b><{NAME_FONT}>{escape(name)}</{NAME_FONT}>\n<b>├📐 Size: </b>{size}"
         else:
-            msg = f"\n<b>Name: </b><{NAME_FONT}>{escape(name)}</{NAME_FONT}>\n\n"
-            msg = f"\n<b>Size: </b>{size}\n\n"
-
+            msg = f"<b>Name: </b><code>{escape(name)}</code>\n\n<b>Size: </b>{size}"
 
         if self.isLeech:
             if SOURCE_LINK is True:
@@ -454,19 +452,19 @@ class MirrorLeechListener:
             if EMOJI_THEME is True:
                 msg += f'\n<b>├📦 Type: </b>{typ}'
             else:
-                msg += f'\n<b>Type: </b>{typ}\n'
+                msg += f'\n\n<b>Type: </b>{typ}'
             if typ == "Folder":
                 if EMOJI_THEME is True:
                     msg += f'\n<b>├🗃️ SubFolders: </b>{folders}'
                     msg += f'\n<b>├🗂️ Files: </b>{files}'
                 else:
                     msg += f'\n<b>SubFolders: </b>{folders}'
-                    msg += f'\n<b>Files: </b>{files}\n\n'
+                    msg += f'\n<b>Files: </b>{files}'
             if EMOJI_THEME is True:
                 msg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
                 msg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\n\n'
             else:
-                msg += f'\n<b>Elepsed:</b> {get_readable_time(time() - self.message.date.timestamp())}\n\n'
+                msg += f'\n\n<b>Elepsed:</b> {get_readable_time(time() - self.message.date.timestamp())}\n\n'
                 msg += f'\n<b>cc: </b>{self.tag}\n\n' 
             buttons = ButtonMaker()
             link = short_url(link)
