@@ -276,7 +276,8 @@ def get_readable_message():
             bmsg += f"\n<b>DL:</b> {get_readable_file_size(dl_speed)}/s | <b>UL:</b> {get_readable_file_size(up_speed)}/s"
         
         buttons = ButtonMaker()
-        buttons.sbutton("Refresh", str(THREE))
+        buttons.sbutton("Refresh", "status refresh")
+        buttons.sbutton("Statistics", str(THREE))
         buttons.sbutton("Close", "status close")
         sbutton = buttons.build_menu(3)
         
@@ -420,14 +421,13 @@ def bot_sys_stats():
     mem_p = memory.percent
     recv = get_readable_file_size(psutil.net_io_counters().bytes_recv)
     sent = get_readable_file_size(psutil.net_io_counters().bytes_sent)
-    cpuUsage = cpu_percent(interval=1)
+    cpuUsage = cpu_percent(interval=0.5)
     stats = f"""
 CPU:  {progress_bar(cpuUsage)} {cpuUsage}%
 RAM: {progress_bar(mem_p)} {mem_p}%
 DISK: {progress_bar(disk)} {disk}%
 
 T: {disk_t}GB | F: {disk_f}GB
-Working: {currentTime}
 T-DL: {recv} | T-UL: {sent}
 """
     return stats
