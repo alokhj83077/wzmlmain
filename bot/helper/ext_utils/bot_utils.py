@@ -238,7 +238,6 @@ def get_readable_message():
                 else:
                     msg += f"\n<b>Engine :</b> {download.eng()}"
                     msg += f"\n<b>Size: </b>{download.size()}"
-            msg += f"\n<b>_____________________________________</b>"
             msg += "\n\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
