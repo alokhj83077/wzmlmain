@@ -464,7 +464,7 @@ class MirrorLeechListener:
                 msg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
                 msg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\n\n'
             else:
-                msg += f'\n\n<b>Elepsed:</b> {get_readable_time(time() - self.message.date.timestamp())}\n\n'
+                msg += f'\n\n<b>Elepsed:</b> {get_readable_time(time() - self.message.date.timestamp())}\n'
                 msg += f'\n<b>cc: </b>{self.tag}\n\n' 
             buttons = ButtonMaker()
             link = short_url(link)
