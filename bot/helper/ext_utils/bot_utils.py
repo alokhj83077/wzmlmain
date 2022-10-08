@@ -292,7 +292,7 @@ def get_readable_message():
         sbutton = buttons.build_menu(3)
         
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
-            msg += f"<b>Tasks:</b> {STATUS_LIMIT}/{tasks}\n"
+            msg += f"<b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
             if EMOJI_THEME is True:
                 buttons.sbutton("Previous", "status pre")
