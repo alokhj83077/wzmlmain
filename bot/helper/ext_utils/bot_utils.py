@@ -288,7 +288,7 @@ def get_readable_message():
         
         buttons = ButtonMaker()
         buttons.sbutton("Refresh", "status refresh")
-        buttons.sbutton("Statistics", str(THREE))
+        buttons.sbutton("Refresh", str(THREE))
         buttons.sbutton("Close", "status close")
         sbutton = buttons.build_menu(3)
         
