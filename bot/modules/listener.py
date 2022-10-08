@@ -463,7 +463,7 @@ class MirrorLeechListener:
                 msg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
                 msg += f'\n<b>╰👤 #Mirror_By: </b>{self.tag}\n\n'
             else:
-                msg += f'\n\n<b>cc: </b>{self.tag}' 
+                msg += f'\n\n<b>cc: </b>{self.tag}\n\n' 
             buttons = ButtonMaker()
             link = short_url(link)
             if DISABLE_DRIVE_LINK is True and self.message.chat.type != 'private':
