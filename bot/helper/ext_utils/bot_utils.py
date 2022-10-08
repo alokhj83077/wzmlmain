@@ -141,6 +141,18 @@ def get_user_task(user_id):
         if userid == user_id: user_task += 1
     return user_task
 
+def progress_bar(percentage):
+    """Returns a progress bar for download"""
+    if isinstance(percentage, str):
+        return "NaN"
+    try:
+        percentage = int(percentage)
+    except Exception:
+        percentage = 0
+    comp = "■"
+    ncomp = "□"
+    return "".join(comp if i <= percentage // 10 else ncomp for i in range(1, 11))
+
 def get_progress_bar_string(status):
     completed = status.processed_bytes() / 8
     total = status.size_raw() / 8
