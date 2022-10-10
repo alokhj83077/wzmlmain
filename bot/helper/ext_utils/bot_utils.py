@@ -167,7 +167,7 @@ def get_progress_bar_string(status):
 
 def get_readable_message():
     with download_dict_lock:
-        msg = f""
+        msg = f"Bot Of Dexter"
         if STATUS_LIMIT is not None:
             tasks = len(download_dict)
             global pages
@@ -287,7 +287,7 @@ def get_readable_message():
             bmsg += f"\n<b>DL:</b> {get_readable_file_size(dl_speed)}/s | <b>UL:</b> {get_readable_file_size(up_speed)}/s"
         
         buttons = ButtonMaker()
-        buttons.sbutton("Refresh", str(THREE))
+        buttons.sbutton("Refresh", "status refresh" str(THREE))
         buttons.sbutton("Close", "status close")
         sbutton = buttons.build_menu(3)
         
