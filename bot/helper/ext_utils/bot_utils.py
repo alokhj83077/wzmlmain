@@ -287,7 +287,7 @@ def get_readable_message():
             bmsg += f"\n<b>DL:</b> {get_readable_file_size(dl_speed)}/s | <b>UL:</b> {get_readable_file_size(up_speed)}/s"
         
         buttons = ButtonMaker()
-        buttons.sbutton("Refresh", str(THREE)"status refresh")
+        buttons.sbutton("Refresh", status refresh str(THREE))
         buttons.sbutton("Close", "status close")
         sbutton = buttons.build_menu(3)
         
