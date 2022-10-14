@@ -413,7 +413,7 @@ class GoogleDriveHelper:
                     msg += f'\n<b>├♻ Type: </b>{mime_type}'
                 else:
                     msg += f'\n\n<b>Size: </b>{get_readable_file_size(int(meta.get("size", 0)))}'
-                    msg += f'\n\b<b>Type: </b>{mime_type}'
+                    msg += f'\n\n<b>Type: </b>{mime_type}'
                 if INDEX_URL is not None:
                     url_path = rquote(f'{file.get("name")}', safe='')
                     url = f'{INDEX_URL}/{url_path}'
@@ -790,7 +790,7 @@ class GoogleDriveHelper:
                 else:
                     msg += f'<b>Name: </b><code>{name}</code>'
                     msg += f'\n\n<b>Size: </b>{get_readable_file_size(self.__total_bytes)}'
-                    msg += '\n\n<b>Type: </b>Folder'
+                    msg += f'\n\n<b>Type: </b>Folder'
                     msg += f'\n<b>SubFolders: </b>{self.__total_folders}'
             else:
                 if EMOJI_THEME is True:
