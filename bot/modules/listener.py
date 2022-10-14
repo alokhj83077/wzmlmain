@@ -387,12 +387,12 @@ class MirrorLeechListener:
             if EMOJI_THEME is True:
                 msg += f'\n<b>├📚 Total Files: </b>{folders}'
             else:
-                msg += f'\n<b>Total Files: </b>{folders}\n\n'
+                msg += f'\n\n<b>Total Files: </b>{folders}'
             if typ != 0:
                 if EMOJI_THEME is True:
                     msg += f'\n<b>├💀 Corrupted Files: </b>{typ}'
                 else:
-                    msg += f'\n<b>Corrupted Files: </b>{typ}\n\n'
+                    msg += f'\n\n<b>Corrupted Files: </b>{typ}'
             if EMOJI_THEME is True:
                 msg += f'\n<b>├⌛ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
                 msg += f'\n<b>╰👤 #Leech_by: </b>{self.tag}\n\n'
@@ -409,7 +409,7 @@ class MirrorLeechListener:
             else:
                 fmsg = ''
                 for index, (link, name) in enumerate(files.items(), start=1):
-                    fmsg += f"{index}. <a href='{link}'>{name}</a>\n"
+                    fmsg += f"{index}. <a href='{link}'>{name}</a>\n\n"
                     if len(fmsg.encode() + msg.encode()) > 2000:
                         sleep(1.5)
                         if FORCE_BOT_PM is False:
