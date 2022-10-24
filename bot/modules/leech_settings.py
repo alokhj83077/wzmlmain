@@ -21,11 +21,11 @@ def getleechinfo(from_user):
         or user_id not in AS_MEDIA_USERS
         and AS_DOCUMENT
     ):
-        ltype = "DOCUMENT"
-        buttons.sbutton("Send As Media", f"leechset {user_id} med")
-    else:
         ltype = "MEDIA"
         buttons.sbutton("Send As Document", f"leechset {user_id} doc")
+    else:
+        ltype = "DOCUMENT"
+        buttons.sbutton("Send As Media", f"leechset {user_id} med")
 
     if ospath.exists(thumbpath):
         thumbmsg = "Exists"
@@ -59,20 +59,20 @@ def setLeechType(update, context):
     data = data.split()
     if user_id != int(data[1]):
         query.answer(text="Not Yours!", show_alert=True)
-    elif data[2] == "doc":
+    elif data[2] == "med":
         if user_id in AS_MEDIA_USERS:
             AS_MEDIA_USERS.remove(user_id)
         AS_DOC_USERS.add(user_id)
         if DB_URI is not None:
-            DbManger().user_doc(user_id)
+            DbManger().user_media(user_id)
         query.answer(text="Your File Will Deliver As Document!", show_alert=True)
         editLeechType(message, query)
-    elif data[2] == "med":
+    elif data[2] == "doc":
         if user_id in AS_DOC_USERS:
             AS_DOC_USERS.remove(user_id)
         AS_MEDIA_USERS.add(user_id)
         if DB_URI is not None:
-            DbManger().user_media(user_id)
+            DbManger().user_doc(user_id)
         query.answer(text="Your File Will Deliver As Media!", show_alert=True)
         editLeechType(message, query)
     elif data[2] == "thumb":
